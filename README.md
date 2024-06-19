@@ -4,9 +4,15 @@
 This is a self-correcting RAG pattern that checks the retrieved contexts for relevancy and the generated answers for hallucinations.\
 It is loosely based on this Self-RAG [paper](https://arxiv.org/abs/2310.11511)\
 <img title="flow"  src="resource/flow.png">\
-The LLM used in this is llama3:8b. The embedding model used is mxbai-embed-large (dim is 1024). Both are ran locally using ollama
+The LLM used in this is llama3:8b. The embedding model used is mxbai-embed-large (1024 dimensions). Both are ran locally using ollama
 
-There is an experimental implementation of guardrails functionality. A opinionated take is that checking the incoming prompts for toxicity or the domain fit is a classification problem. While LLMs can be used for classifying toxicity, this approach might not work reliable for scenarios that need filtering non-toxic incoming questions that do not fit into the intended domain. For example, fitering out questions based on competitors or out-of-bound subject areas. When there is a greater control needed, there are colorful choices of classic algorithms like RandomForest classification. When used with embeddings as the features, they are expected to perform better than ever. So, here is an experimental implementation presented in toxic_rail_experiment.ipynb\
+Some fun goodies in this exercise are:
+
+a) The chunking is done using SemanticSplitter which helps to split meaningfully complete blocks
+b) Have become a fan of Faiss for its variety of indexing methods. Used the llama-index abstraction over Faiss.
+c) Used langgraph to compose the workflow. Another great lib that brings loose coupling and the ability to assemble functionality as in the diagram above.
+
+There is also an experimental implementation of guardrails functionality. A opinionated take is that checking the incoming prompts for toxicity or the domain fit is a classification problem. While LLMs can be used for classifying toxicity, this approach might not work reliable for scenarios that need filtering non-toxic incoming questions that do not fit into the intended domain. For example, fitering out questions based on competitors or out-of-bound subject areas. When there is a greater control needed, there are colorful choices of classic algorithms like RandomForest classification. When used with embeddings as the features, they are expected to perform better than ever. So, here is an experimental implementation presented in toxic_rail_experiment.ipynb\
 
 To try this out:\
     a) Install ollama\
