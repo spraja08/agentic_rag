@@ -4,7 +4,7 @@
 This is a self-correcting RAG pattern that checks the retrieved contexts for relevancy and the generated answers for hallucinations.\
 It is loosely based on this Self-RAG [paper](https://arxiv.org/abs/2310.11511)\
 <img title="flow"  src="resource/flow.png">\
-The LLM used in this is llama3:8b. The embedding model used is mxbai-embed-large (dim is 1024). Both are ran locally using ollama\
+The LLM used in this is llama3:8b. The embedding model used is mxbai-embed-large (dim is 1024). Both are ran locally using ollama
 
 There is an experimental implementation of guardrails functionality. A opinionated take is that checking the incoming prompts for toxicity is a classification problem. While LLMs can be used for this purpose, this approach might not work for scenarios that need filtering incoming questions that do not fit into the intended domain. For example, fitering out questions based on competitors or out-of-bound subject areas like politics. When there is a greater control needed, there are colorful choices of classic algorithms like RandomForest classification. When used with embeddings as the features, they are expected to perform better than ever. So, here is an experimental implementation presented in toxic_rail_experiment.ipynb\
 
